@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    NODE_NAME = tula_mulava
+    NODE_NAME = 'tula_mulava'
   }
   stages {
     stage('Build') {
