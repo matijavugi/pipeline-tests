@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    NODE_NAME = tula_mulava
+  }
   stages {
     stage('Build') {
       steps {
