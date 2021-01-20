@@ -13,7 +13,7 @@ node {
         echo 'This will run only if the run was marked as unstable'
       }
 
-      def previousResult = currentBuild.previousBuild?.reset
+      def previousResult = currentBuild.previousBuild?.result
       if (previousResult != null && previousResult != currentResult) {
         echo 'This will run only if the state of the Pipeline has changed'
       }
