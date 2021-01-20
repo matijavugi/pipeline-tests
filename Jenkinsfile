@@ -7,7 +7,7 @@ node {
   } catch (e) {
       echo 'This will run only if failed'
       throw e 
-  } finall {
+  } finally {
       def currentResult = currentBuild.result ?: 'SUCCESS'
       if (currentResult == 'UNSTABLE') {
         echo 'This will run only if the run was marked as unstable'
