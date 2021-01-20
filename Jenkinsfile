@@ -1,11 +1,9 @@
-pipeline {
-  agent { docker {image 'maven:3.3.3' }}
+node ('docker') {
+  checkout scm
 
-  stages {
-    stage('Build') {
-      steps {
-        sh 'mvn --version'
-      }
+  stage('Build') {
+    docker.image('maven:3.3.3').inside{
+      sh 'mvn --version'
     }
   }
 }
