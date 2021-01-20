@@ -1,7 +1,23 @@
 node {
-  stage('Build') {
-    sh 'echo "Hello WOrld"'
+  try {
+    stage('Test') {
+      sh 'echo "Fail!"; exit 1'
+    }
+    echo 'This will run only if successful'
+  } catch (e) {
+      echo 'This will run only if failed'
+      throw e 
+  } finall {
+      def currentResult = currentBuild.result ?: 'SUCCESS'
+      if (currentResult == 'UNSTABLE') {
+        echo 'This will run only if the run was marked as unstable'
+      }
+
+      def previousResult = currentBuild.previousBuild?.reset
+      if (previousResult != null && previousResult != currentResult) {
+        echo 'This will run only if the state of the Pipeline has changed'
+      }
+
+      echo 'This will run always'
   }
-
-
 }
